@@ -2,14 +2,28 @@ package com.userfront.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Appointment {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date date;
 	private String locations;
 	private String description;
 	private boolean confirmed;
 	
+	
+	@ManyToOne
+	@JoinColumn(name= "user_id")
 	private User user;
 
 	public Long getId() {
@@ -58,6 +72,12 @@ public class Appointment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", date=" + date + ", locations=" + locations + ", description=" + description
+				+ ", user=" + user + "]";
 	}
 	
 	

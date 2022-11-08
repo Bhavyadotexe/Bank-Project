@@ -3,8 +3,20 @@ package com.userfront.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GeneratorType;
+
+@Entity
 public class SavingsTransaction {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date date;
 	private String description;
@@ -13,7 +25,9 @@ public class SavingsTransaction {
 	private double amount;
 	private BigDecimal availableBalance;
 	
-	private SavingsAccount savingAccount;
+	@ManyToOne
+	@JoinColumn(name = "saving_account_id")
+	private SavingsAccount savingsAccount;
 	
 	public SavingsTransaction() {
 		
@@ -29,7 +43,7 @@ public class SavingsTransaction {
 		this.status = status;
 		this.amount = amount;
 		this.availableBalance = availableBalance;
-		this.savingAccount = savingAccount;
+		this.savingsAccount = savingAccount;
 	}
 
 
@@ -77,12 +91,12 @@ public class SavingsTransaction {
 	}
 	
 	public SavingsAccount getSavingAccount() {
-		return savingAccount;
+		return savingsAccount;
 	}
 
 
 	public void setSavingAccount(SavingsAccount savingAccount) {
-		this.savingAccount = savingAccount;
+		this.savingsAccount = savingAccount;
 	}
 
 
@@ -90,7 +104,7 @@ public class SavingsTransaction {
 	public String toString() {
 		return "SavingsTransaction [id=" + id + ", date=" + date + ", description=" + description + ", type=" + type
 				+ ", status=" + status + ", amount=" + amount + ", availableBalance=" + availableBalance
-				+ ", savingAccount=" + savingAccount + "]";
+				+ ", savingAccount=" + savingsAccount + "]";
 	}
 
 

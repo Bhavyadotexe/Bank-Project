@@ -3,8 +3,18 @@ package com.userfront.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class PrimaryTransaction {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date date;
 	private String description;
@@ -13,12 +23,8 @@ public class PrimaryTransaction {
 	private double amount;
 	private BigDecimal availableBalance;
 	
-	private PrimaryAccount primaryAccount;
 	
-	public PrimaryTransaction() {
-	}
-	
-	
+	public PrimaryTransaction() {}
 	
 	public PrimaryTransaction(Date date, String description, String type, String status, double amount,
 			BigDecimal availableBalance, PrimaryAccount primaryAccount) {
@@ -30,9 +36,12 @@ public class PrimaryTransaction {
 		this.amount = amount;
 		this.availableBalance = availableBalance;
 		this.primaryAccount = primaryAccount;
+		
 	}
 
-
+	@ManyToOne
+	@JoinColumn(name = "primary_account_id")
+	private PrimaryAccount primaryAccount;
 
 	public Long getId() {
 		return id;
