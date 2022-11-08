@@ -9,7 +9,7 @@ public class Recipient {
 	private String accountNumber;
 	private String description;
 	
-	private User user;
+	private User user; 
 
 	public Long getId() {
 		return id;
