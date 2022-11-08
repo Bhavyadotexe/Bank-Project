@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
 
 	private Long userId;
-	private String userName;
+	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -24,11 +24,11 @@ public class User {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -93,7 +93,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", firstName="
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone + ", enabled="
 				+ enabled + "]";
 	}
